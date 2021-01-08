@@ -19,7 +19,7 @@
     <script src="./js/compress/zip.min.js"></script>
     <script src="./js/jquery/jquery.cookie.js"></script>
 
-    <script src="./js/table/table.js"></script>
+    <script src="./js/table/table_.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -79,14 +79,16 @@
                         <a class="nav-link active" href="#table" data-toggle="tab">Table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#graph" data-toggle="tab">Graph</a>
+                        <a class="nav-link " href="#graph" data-toggle="tab">?</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body text-dark tab-content">
                 <div id="table" class="tab-pane fade show active">
                     <div class="mb-3">
-                        <p> </p>
+                        <div class="alert alert-primary" role="alert">
+                                グラフの表示が乱れる場合はリロードしてください。
+                        </div>
                         <p>凡例
                             <div class="progress">
                                 <div id="graph5_ex"
