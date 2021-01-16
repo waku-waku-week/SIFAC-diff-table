@@ -27,7 +27,25 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-</head>
+    <script>
+        MathJax = {
+            chtml: {
+                matchFontHeight: false
+            },
+            tex: {
+                inlineMath: [
+                    ['$', '$']
+                ]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js'></script>
+    <script
+        src='https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js'>
+    </script>
+    <script src='https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js'></script>
 
 <body>
 
@@ -78,7 +96,10 @@
                         <a class="nav-link active" href="#table" data-toggle="tab">Table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#graph" data-toggle="tab">?</a>
+                        <a class="nav-link " href="#graph" data-toggle="tab">Graph</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#faq" data-toggle="tab">FAQ</a>
                     </li>
                 </ul>
             </div>
@@ -86,7 +107,7 @@
                 <div id="table" class="tab-pane fade show active">
                     <div class="mb-3">
                         <div class="alert alert-primary" role="alert">
-                            グラフの表示が乱れる場合はリロードしてください。
+                            曲名をクリックするとクリア状況を更新できます。
                         </div>
                         <p>凡例
                             <div class="progress">
@@ -107,8 +128,10 @@
                                 <div id="graph1_ex" class="progress-bar bg-secondary" role="progressbar"
                                     style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">
                                     PLAYED</div>
-                            </div><br>※ 曲名をクリックするとクリア状況を更新できます。 </p>
-                        <p>
+                            </div>
+                        </p>
+                        <!--
+                            <p>
                             <div class="progress">
                                 <div id="graph5"
                                     class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
@@ -142,6 +165,7 @@
                                     style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </p>
+                    --->
                     </div>
                     <div class="table table-responsive mb-3" style="table-layout: fixed;">
                         <table id="diff_table" class="table table-bordered">
@@ -154,8 +178,633 @@
                 </div>
                 <div id="graph" class="tab-pane fade show">
                     <div class="mb-3">
-                        <p></p>
+                        <div class="alert alert-primary" role="alert">
+                            リロードするとグラフが更新されます。
+                        </div>
+                        <p>凡例
+                            <div class="progress">
+                                <div id="graph5_ex"
+                                    class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                    role="progressbar" style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0"
+                                    aria-valuemax="100">AP</div>
+                                <div id="graph4_ex"
+                                    class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                    role="progressbar" style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0"
+                                    aria-valuemax="100">AP</div>
+                                <div id="graph3_ex" class="progress-bar bg-primary" role="progressbar"
+                                    style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">FC
+                                </div>
+                                <div id="graph2_ex" class="progress-bar bg-success" role="progressbar"
+                                    style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">FC
+                                </div>
+                                <div id="graph1_ex" class="progress-bar bg-secondary" role="progressbar"
+                                    style="width: 16.6%" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">
+                                    PLAYED</div>
+                            </div><br>
+                            <div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #00d1fe;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">EASY</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #52dd11;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">NORMAL</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #e99212;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">HARD</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #d52b59;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">EXTREME</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #950dd8;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">CHALLENGE</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #31a7fd;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">PLUS</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #17bcae;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">COMBO</div>
+                                </div>
+                                <div class="progress" style="width: 10%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: 100%;background-color: #fd4c7f;" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">SWITCH</div>
+                                </div>
+                            </div>
+                    </div>
+                    </p>
+                    <h4>μ's</h4>
+                    <p>
+                        <div class="progress">
+                            <div id="muse_0_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_0_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_0_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_0_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_0_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_1_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_1_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_1_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_1_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_1_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_2_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_2_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_2_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_2_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_2_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_3_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_3_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_3_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_3_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_3_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_4_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_4_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_4_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_4_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_4_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_5_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_5_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_5_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_5_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_5_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_6_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_6_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_6_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_6_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_6_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="muse_7_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_7_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="muse_7_graph3" class="progress-bar bg-primary" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_7_graph2" class="progress-bar bg-success" role="progressbar" style="width: 0%"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="muse_7_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </p>
+                    <h4>Aqours</h4>
+                    <p>
+                        <div class="progress">
+                            <div id="aqours_0_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_0_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_0_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_0_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_0_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_1_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_1_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_1_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_1_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_1_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_2_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_2_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_2_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_2_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_2_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_3_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_3_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_3_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_3_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_3_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_4_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_4_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_4_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_4_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_4_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_5_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_5_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_5_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_5_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_5_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_6_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_6_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_6_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_6_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_6_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="aqours_7_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_7_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="aqours_7_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_7_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="aqours_7_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </p>
+                    <h4>Saint Snow</h4>
+                    <p>
+                        <div class="progress">
+                            <div id="saintsnow_0_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_0_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_0_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_0_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_0_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_1_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_1_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_1_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_1_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_1_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_2_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_2_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_2_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_2_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_2_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_3_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_3_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_3_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_3_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_3_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_4_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_4_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_4_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_4_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_4_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_5_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_5_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_5_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_5_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_5_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_6_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_6_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_6_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_6_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_6_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="saintsnow_7_graph5"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_7_graph4"
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            <div id="saintsnow_7_graph3" class="progress-bar bg-primary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_7_graph2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div id="saintsnow_7_graph1" class="progress-bar bg-secondary" role="progressbar"
+                                style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="table table-responsive mb-3" style="table-layout: fixed;">
 
+                </div>
+                <div class="mb-3">
+                    <h6></h6>
+                </div>
+                <div id="faq" class="tab-pane fade show">
+                    <div class="mb-3">
+                        <p>項目応答理論(Item Response
+                            Theory)の2パラメータロジスティックモデルによると、能力値$x$を持った受験者が識別度が$a$、難易度が$b$の試験を受験したときの正答率$p(x)$は$p(x) =
+                            \frac{1}{1+e^{-a(x-b)}}$と表すことができます。</p>
+                        <div style="width:100%;">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <script>
+                            function prob(x, a, b) {
+                                return 1 / (1 + Math.exp(-a * (x - b)));
+                            }
+                            var numbers = [...Array(10 + 1).keys()];
+                            var config = {
+                                type: 'line',
+                                data: {
+                                    labels: numbers,
+                                    datasets: [{
+                                        label: '(a,b)=(1,4)',
+                                        fill: false,
+                                        backgroundColor: window.chartColors.red,
+                                        borderColor: window.chartColors.red,
+                                        data: numbers.map(i => prob(i, 1, 4)),
+                                    }, {
+                                        label: '(a,b)=(3,4)',
+                                        fill: false,
+                                        backgroundColor: window.chartColors.red,
+                                        borderColor: window.chartColors.red,
+                                        borderDash: [5, 5],
+                                        data: numbers.map(i => prob(i, 3, 4)),
+                                    }, {
+                                        label: '(a,b)=(1,6)',
+                                        fill: false,
+                                        backgroundColor: window.chartColors.blue,
+                                        borderColor: window.chartColors.blue,
+                                        data: numbers.map(i => prob(i, 1, 6)),
+                                    }, {
+                                        label: '(a,b)=(3,6)',
+                                        fill: false,
+                                        backgroundColor: window.chartColors.blue,
+                                        borderColor: window.chartColors.blue,
+                                        borderDash: [5, 5],
+                                        data: numbers.map(i => prob(i, 3, 6)),
+                                    }, ]
+
+                                },
+                                options: {
+                                    responsive: true,
+                                    title: {
+                                        display: true,
+                                        text: 'two parameter logistic model'
+                                    },
+                                    tooltips: {
+                                        mode: 'index',
+                                        intersect: false,
+                                    },
+                                    hover: {
+                                        mode: 'nearest',
+                                        intersect: true
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'x'
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'p(x)'
+                                            }
+                                        }]
+                                    }
+                                }
+                            };
+
+                            window.onload = function () {
+                                var ctx = document.getElementById('canvas').getContext('2d');
+                                window.myLine = new Chart(ctx, config);
+                            };
+                        </script>
+                        <p>ここでは$a$を地力譜面度、$b$を譜面の難易度とし、$p(x)$を地力$x$のプレイヤーが固有の定数$(a,b)$を持った譜面で目標を達成できる確率とします。</p>
+                        <p>上記のグラフより$p(x)$は$a$が大きくなる(地力譜面になる)ほど曲線が急になり(地力譜面は地力の向上によって安定する)、小さくなる(個人差譜面になる)ほど曲線がゆるやかになる(個人差譜面は地力が向上しても安定しない)ことがわかります。
+                        </p>
+                        <p><b>この難易度表では$a$が大きい(であろう)譜面を地力譜面、小さい(であろう)譜面を個人差譜面として扱い、$b$を譜面の難易度とします。</b></p>
                     </div>
                     <div class="table table-responsive mb-3" style="table-layout: fixed;">
 
